@@ -10,7 +10,7 @@
 
 # Cheat Sheet Search Script With Web-UI
 
-<a href="https://imgur.com/heaERZL"><img src="https://imgur.com/heaERZL.png" title="source: imgur.com" /></a>
+<a href=""><img src="https://i.imgur.com/rOjLCEN.png" title="source: imgur.com" /></a>
 
 ## Key Features 
 * User Management**: Admins can create, delete, and modify user accounts, including password changes (now supporting admin account updates) and generating unique API keys for secure external access.
