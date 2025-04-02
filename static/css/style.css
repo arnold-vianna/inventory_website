@@ -1,0 +1,104 @@
+<style>
+    body {
+        background-color: #212529;
+        color: #ffffff;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    .navbar {
+        background-color: #343a40;
+    }
+    .navbar-brand, .nav-link {
+        color: #ffffff !important;
+    }
+    .nav-link:hover {
+        color: #cccccc !important;
+    }
+    .container {
+        background-color: #343a40;
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 20px;
+        flex: 1;
+    }
+    .card {
+        background-color: #495057;
+        border: none;
+    }
+    .card-header {
+        background-color: #6c757d;
+        color: #ffffff;
+    }
+    .card-body {
+        color: #ffffff;
+    }
+    .form-control, .form-select {
+        background-color: #6c757d;
+        color: #ffffff;
+        border: 1px solid #ced4da;
+    }
+    .form-control::placeholder {
+        color: #ced4da;
+    }
+    .alert-info {
+        background-color: #17a2b8;
+        color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        color: #ffffff;
+    }
+    label {
+        color: #ffffff;
+    }
+    footer {
+        background-color: #343a40;
+        color: #ffffff;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: auto;
+    }
+    footer a {
+        color: #ffffff;
+        text-decoration: none;
+    }
+    footer a:hover {
+        color: #cccccc;
+    }
+    table {
+        background-color: #343a40;
+        color: #ffffff;
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    th, td {
+        background-color: #495057 !important;
+        color: #ffffff !important;
+        padding: 10px;
+        border: 1px solid #6c757d;
+        text-align: left;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #3a3f44 !important;
+    }
+    
+    tr:nth-child(odd) {
+        background-color: #495057 !important;
+    }
+    
+    button {
+        color: white;
+    }
+    
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }    
+    </style>

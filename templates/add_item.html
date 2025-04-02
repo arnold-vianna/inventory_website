@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="mt-4">
+    <h2>{% if item %}Edit Item{% else %}Add New Item{% endif %}</h2>
+    <div class="card">
+        <div class="card-body">
+            <form method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ item.name if item else '' }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="3">{{ item.description if item else '' }}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="quantity" class="form-label">Quantity/Length</label>
+                    <input type="number" step="0.01" class="form-control" id="quantity" name="quantity" value="{{ item.quantity if item else 0 }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="unit" class="form-label">Unit</label>
+                    <select class="form-select" id="unit" name="unit">
+                        <option value="quantity" {% if item and item.unit == 'quantity' %}selected{% endif %}>Quantity</option>
+                        <option value="meters" {% if item and item.unit == 'meters' %}selected{% endif %}>Meters</option>
+                        <option value="feet" {% if item and item.unit == 'feet' %}selected{% endif %}>Feet</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="tags" class="form-label">Tags (comma-separated)</label>
+                    <input type="text" class="form-control" id="tags" name="tags" value="{{ item.tags if item else '' }}">
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <input type="file" class="form-control" id="image" name="image">
+                    {% if item and item.image %}
+                    <small class="form-text">Current image: {{ item.image }}</small>
+                    {% endif %}
+                </div>
+                <button type="submit" class="btn btn-primary">{% if item %}Update Item{% else %}Add Item{% endif %}</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

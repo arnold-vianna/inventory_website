@@ -1,0 +1,6 @@
+flask
+flask-sqlalchemy
+pillow
+flask-login
+werkzeug
+gunicorn

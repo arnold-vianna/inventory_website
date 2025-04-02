@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Manage Users</h2>
+
+    <!-- Flash Messages (Moved to Top) -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="mb-3">
+        {% for message in messages %}
+        <div class="alert alert-info">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <!-- Add New User Form -->
+    <div class="card mb-4">
+        <div class="card-header">Add New User</div>
+        <div class="card-body">
+            <form method="POST">
+                <input type="hidden" name="add_user" value="1"> <!-- Standardized with hidden input -->
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="mb-3">
+                    <label for="permissions" class="form-label">Permissions</label>
+                    <select class="form-select" id="permissions" name="permissions">
+                        <option value="read_write">Read & Write</option>
+                        <option value="read">Read Only</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Add User</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Existing Users Table -->
+    <h3>Existing Users</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Permissions</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.permissions }}</td>
+                <td>
+                    <!-- Delete User Form -->
+                    <form method="POST" style="display:inline;">
+                        <input type="hidden" name="user_id" value="{{ user.id }}">
+                        <input type="hidden" name="delete_user" value="1"> <!-- Standardized -->
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                    <!-- Generate API Key Form -->
+                    <form method="POST" style="display:inline;">
+                        <input type="hidden" name="user_id" value="{{ user.id }}">
+                        <input type="hidden" name="generate_api_key" value="1"> <!-- Standardized -->
+                        <button type="submit" class="btn btn-success btn-sm">Generate API Key</button>
+                    </form>
+                    <!-- Change Password Button (Triggers Modal) -->
+                    <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#changePasswordModal{{ user.id }}">Change Password</button>
+
+                    <!-- Modal for Changing Password -->
+                    <div class="modal fade" id="changePasswordModal{{ user.id }}" tabindex="-1" aria-labelledby="changePasswordModalLabel{{ user.id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="changePasswordModalLabel{{ user.id }}">Change Password for {{ user.username }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST">
+                                        <input type="hidden" name="user_id" value="{{ user.id }}">
+                                        <input type="hidden" name="change_password" value="1"> <!-- Standardized -->
+                                        <div class="mb-3">
+                                            <label for="new_password_{{ user.id }}" class="form-label">New Password</label>
+                                            <input type="password" class="form-control" id="new_password_{{ user.id }}" name="new_password" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="confirm_password_{{ user.id }}" class="form-label">Confirm Password</label>
+                                            <input type="password" class="form-control" id="confirm_password_{{ user.id }}" name="confirm_password" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Change Password</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
